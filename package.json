@@ -12,11 +12,17 @@
         "dev": "microbundle watch"
     },
     "devDependencies": {
-        "microbundle": "^0.15.1"
+        "microbundle": "^0.15.1",
+        "@types/md5": "^2.3.5"
     },
+    "dependencies": {
+        "md5": "^2.3.0",
+        "notistack": "^3.0.1"
+    },
+    "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/femakin01/CapitalizeFirstLetterofaString.git"
+        "url": "git+https://github.com/larabizcms/npm-core"
     },
     "overrides": {
         "react": "$react"

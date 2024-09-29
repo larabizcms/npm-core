@@ -1,5 +1,5 @@
 {
-    "name": "larabizcms",
+    "name": "@larabizcms/larabizcms",
     "version": "1.0.0",
     "type": "module",
     "source": "index.js",
@@ -88,9 +88,16 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/larabizcms/npm-core"
+        "url": "git+https://github.com/larabizcms/npm-core.git"
     },
     "overrides": {
         "react": "$react"
-    }
+    },
+    "bugs": {
+        "url": "https://github.com/larabizcms/npm-core/issues"
+    },
+    "homepage": "https://github.com/larabizcms/npm-core#readme",
+    "devDependencies": {},
+    "author": "The Anh Dang <admin@larabiz.com> (https://larabiz.com)",
+    "description": "The Larabiz CMS Core Package"
 }

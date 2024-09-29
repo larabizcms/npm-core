@@ -2,7 +2,6 @@
     "name": "@larabizcms/larabizcms",
     "version": "1.0.1",
     "type": "module",
-    "source": "index.js",
     "main": "index.js",
     "types": "index.d.ts",
     "scripts": {

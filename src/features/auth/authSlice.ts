@@ -18,7 +18,6 @@ export type User = {
     uuid: string;
     status: string;
     email_verified_at: string | null;
-    is_super_admin: boolean;
     roles: Array<string>;
     permissions: Array<string>;
     has_all_permissions: boolean;

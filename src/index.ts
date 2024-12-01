@@ -1,3 +1,1 @@
-import {uploadUrl, objectToQueryString} from './Helpers';
-
-export { uploadUrl, objectToQueryString }
+export * from './Helpers';

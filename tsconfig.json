@@ -9,7 +9,7 @@
     },
     "include": [
         "src"
-, "../../resources/js/http-common.ts"    ],
+    ],
     "exclude": [
         "node_modules",
         "test"

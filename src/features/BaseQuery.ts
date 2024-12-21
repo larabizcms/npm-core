@@ -22,6 +22,8 @@ export const onQueryStartedError = async (args: any, { queryFulfilled }: { query
             //         refresh_token: token.refresh_token,
             //     }));
             // }
+
+            window.location.href = '/user/login';
         }
 
         throw e;

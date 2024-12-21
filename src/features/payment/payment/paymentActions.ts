@@ -1,5 +1,5 @@
 import http from '@local/http-common';
-import { createAppAsyncThunk } from '@larabizcms/larabizcms/features/withTypes';
+import { createAppAsyncThunk } from './withTypes';
 
 export type PaymentPurchaseParams = {
     module: string,

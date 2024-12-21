@@ -1,7 +1,7 @@
 import { createAppAsyncThunk } from '../withTypes';
 import http from '@local/http-common';
 import { GeneralData } from './settingSlice';
-import { objectToQueryString } from '@larabizcms/admin/helpers/helper';
+import { objectToQueryString } from '../../helpers';
 
 export type GetSettingParams = {
     locale?: string

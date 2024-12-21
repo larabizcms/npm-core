@@ -1,13 +1,13 @@
-import authReducer from '@larabizcms/larabizcms/features/auth/authSlice';
-import settingReducer from '@larabizcms/larabizcms/features/setting/settingSlice';
-import mediaReducer from '@larabizcms/larabizcms/features/media/mediaSlice';
-import pageReducer from '@larabizcms/larabizcms/features/page/pageSlice';
-import { authApi } from '@larabizcms/larabizcms/features/auth/authService';
-import { settingApi } from '@larabizcms/larabizcms/features/setting/settingService';
-import { mediaApi } from '@larabizcms/larabizcms/features/media/mediaService';
-import { pageApi } from '@larabizcms/larabizcms/features/page/pageService';
-import languageReducer from '@larabizcms/larabizcms/features/language/languageSlice';
-import menuReducer from '@larabizcms/larabizcms/features/menu/menuSlice';
+import authReducer from './auth/authSlice';
+import settingReducer from './setting/settingSlice';
+import mediaReducer from './media/mediaSlice';
+import pageReducer from './page/pageSlice';
+import { authApi } from './auth/authService';
+import { settingApi } from './setting/settingService';
+import { mediaApi } from './media/mediaService';
+import { pageApi } from './page/pageService';
+import languageReducer from './language/languageSlice';
+import menuReducer from './menu/menuSlice';
 import { Middleware } from '@reduxjs/toolkit';
 
 export const rootMiddleware: Middleware[] = [

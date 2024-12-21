@@ -99,3 +99,22 @@ export function mediaImageSrcs(media: Media, defaultSrcConversion: null|string =
         srcSet: media.conversions.srcset,
     };
 }
+
+export function replaceTemplate(template: string, data: { [key: string]: any }) {
+    return template.replace(
+        /{(\w*)}/g,
+        function (m, key) {
+            return data.hasOwnProperty(key) ? data[key] : "";
+        }
+    );
+}
+
+export function objectToQueryString(obj: { [key: string]: string | number | null | undefined }) {
+    const keys = Object.keys(obj).filter(key => obj[key] !== undefined);
+
+    const keyValuePairs = keys.map(key => {
+        return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key] || '');
+    });
+
+    return keyValuePairs.join('&');
+}

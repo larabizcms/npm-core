@@ -1,7 +1,7 @@
 import http from '@local/http-common';
 import { createAppAsyncThunk } from '../../withTypes';
 import { PaymentMethod } from './methodSlice';
-import { objectToQueryString } from '@larabizcms/admin/helpers/helper';
+import { objectToQueryString } from '../../helpers';
 
 export type GetPaymentMethodsParams = {
     module: string,

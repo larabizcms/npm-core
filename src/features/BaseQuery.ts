@@ -1,9 +1,9 @@
-import http from "@local/http-common";
+import http from "../http-common";
 import { BaseQueryFn } from "@reduxjs/toolkit/query";
 import { AxiosError, AxiosRequestConfig } from "axios";
-import { store } from "@local/store";
-import { refreshToken } from "./auth/authActions";
-import {isRefreshTokenLoading, selectAuthToken} from "@larabizcms/larabizcms/features/selectors";
+// import { store } from "@local/store";
+// import { refreshToken } from "./auth/authActions";
+// import {isRefreshTokenLoading, selectAuthToken} from "./selectors";
 
 export const onQueryStartedError = async (args: any, { queryFulfilled }: { queryFulfilled: Promise<any> }) => {
     try {
@@ -13,15 +13,15 @@ export const onQueryStartedError = async (args: any, { queryFulfilled }: { query
         // handle error here, dispatch toast message
         if (e.error.status === 401) {
             // redirect to login
-            const state = store.getState();
-            const token = selectAuthToken(state);
-            const loading = isRefreshTokenLoading(state);
+            // const state = store.getState();
+            // const token = selectAuthToken(state);
+            // const loading = isRefreshTokenLoading(state);
 
-            if (!loading && token && token.refresh_token) {
-                store.dispatch(refreshToken({
-                    refresh_token: token.refresh_token,
-                }));
-            }
+            // if (!loading && token && token.refresh_token) {
+            //     store.dispatch(refreshToken({
+            //         refresh_token: token.refresh_token,
+            //     }));
+            // }
         }
 
         throw e;

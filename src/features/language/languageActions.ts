@@ -1,7 +1,7 @@
 import http from '@local/http-common';
 import { createAppAsyncThunk } from '../withTypes';
 import { Language } from './languageSlice';
-import { objectToQueryString } from '@larabizcms/admin/helpers/helper';
+import { objectToQueryString } from '../../helpers';
 
 export type LanguageList = {
     data: Language[];

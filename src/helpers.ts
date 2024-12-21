@@ -1,7 +1,7 @@
 import { User } from "./features/auth/authSlice";
 import { Media } from "./features/media/mediaSlice";
 
-export const apiBaseUrl = (process.env.VITE_APP_API_URL || location.origin + '/api/v1');
+export const apiBaseUrl = (location.origin + '/api/v1');
 
 /**
  * Returns the given URL as it is. This is a no-op function that's used as a placeholder.

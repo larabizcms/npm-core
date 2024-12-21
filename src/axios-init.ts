@@ -1,7 +1,7 @@
 import axios from "axios";
 import { isInternalUrl } from "./helpers";
 
-axios.defaults.baseURL = (process.env.VITE_APP_API_URL || location.origin + '/api/v1');
+axios.defaults.baseURL = (location.origin + '/api/v1');
 
 axios.interceptors.request.use(
     config => {

@@ -1,4 +1,4 @@
-import customBaseQuery, { onQueryStartedError } from './BaseQuery';
+import customBaseQuery, { onQueryStartedError } from '../BaseQuery';
 import { objectToQueryString } from '../../helpers';
 import { createApi } from '@reduxjs/toolkit/query/react';
 

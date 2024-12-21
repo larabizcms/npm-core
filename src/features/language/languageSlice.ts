@@ -1,7 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchLanguages } from './languageActions';
-import { RootState } from '@local/store';
 
 export type Language = {
     name: string
@@ -49,6 +48,6 @@ const languageSlice = createSlice({
     },
 });
 
-export const selectAllLanguages = (state: RootState) => state.language.languages;
+export const selectAllLanguages = (state: any) => state.language.languages;
 
 export default languageSlice.reducer;

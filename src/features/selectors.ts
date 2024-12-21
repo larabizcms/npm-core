@@ -1,11 +1,12 @@
-import { RootState } from "@local/store";
+import { AuthState } from "./auth/authSlice";
+import { SettingState } from "./setting/settingSlice";
 
-export const selectGeneral = (state: RootState) => state.setting.general;
+export const selectGeneral = (state: { setting: SettingState }) => state.setting.general;
 
-export const selectSetting = (state: RootState) => state.setting.settings;
+export const selectSetting = (state: { setting: SettingState }) => state.setting.settings;
 
-export const selectAuthToken = (state: RootState) => state.auth.userToken;
+export const selectAuthToken = (state: { auth: AuthState }) => state.auth.userToken;
 
-export const selectAuthUser = (state: RootState) => state.auth.user;
+export const selectAuthUser = (state: { auth: AuthState }) => state.auth.user;
 
-export const isRefreshTokenLoading = (state: RootState) => state.auth.refreshTokenLoading;
+export const isRefreshTokenLoading = (state: { auth: AuthState }) => state.auth.refreshTokenLoading;

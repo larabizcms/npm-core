@@ -1,7 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchMenus } from './menuActions';
-import { RootState } from '@local/store';
 
 export type Menu = {
     key: string;
@@ -70,6 +69,6 @@ const menuSlice = createSlice({
     },
 });
 
-export const selectAllMenus = (state: RootState) => state.menu.menus;
+export const selectAllMenus = (state: any) => state.menu.menus;
 
 export default menuSlice.reducer;

@@ -1,14 +1,14 @@
 import http from '../../../http-common';
-import { createAppAsyncThunk } from '../../withTypes';
 import { Order } from './orderSlice';
 import { objectToQueryString } from '../../../helpers';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export type GetOrdersParams = {
     locale?: string,
     [key: string]: string | undefined,
 }
 
-export const getOrders = createAppAsyncThunk('orders/index', async (params: GetOrdersParams | undefined, { rejectWithValue }) => {
+export const getOrders = createAsyncThunk('orders/index', async (params: GetOrdersParams | undefined, { rejectWithValue }) => {
     try {
         const response = await http.get<Order>(`/ecommerce/orders`
             + (params ? '?' + objectToQueryString(params) : '')
@@ -30,7 +30,7 @@ export type GetOrderParams = {
     [key: string]: string | undefined,
 }
 
-export const getOrder = createAppAsyncThunk('orders', async (params: GetOrderParams, { rejectWithValue }) => {
+export const getOrder = createAsyncThunk('orders', async (params: GetOrderParams, { rejectWithValue }) => {
     try {
         const query = Object.keys(params).filter(key => key !== 'id')
             .reduce((a, b) => ({ ...a, [b]: params[b] }), {});
@@ -53,7 +53,7 @@ export type StoreOrderParams = {
 
 }
 
-export const storeOrder = createAppAsyncThunk('orders/store', async (data: StoreOrderParams, { rejectWithValue }) => {
+export const storeOrder = createAsyncThunk('orders/store', async (data: StoreOrderParams, { rejectWithValue }) => {
     try {
         const response = await http.post<Order>(`/ecommerce/orders`, data);
 
@@ -80,7 +80,7 @@ export type CheckoutParams = {
     }[],
 }
 
-export const checkout = createAppAsyncThunk('orders/checkout', async (data: CheckoutParams, { rejectWithValue }) => {
+export const checkout = createAsyncThunk('orders/checkout', async (data: CheckoutParams, { rejectWithValue }) => {
     try {
         const response = await http.post<Order>(`/ecommerce/checkout`, data);
 

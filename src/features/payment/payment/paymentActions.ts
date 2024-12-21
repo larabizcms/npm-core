@@ -1,5 +1,5 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import http from '../../../http-common';
-import { createAppAsyncThunk } from '../../../features/withTypes';
 
 export type PaymentPurchaseParams = {
     module: string,
@@ -7,7 +7,7 @@ export type PaymentPurchaseParams = {
     [key: string]: any
 }
 
-export const purchase = createAppAsyncThunk(
+export const purchase = createAsyncThunk(
     'payment/purchase',
     async ({ module, ...params }: PaymentPurchaseParams, { rejectWithValue }) => {
         try {

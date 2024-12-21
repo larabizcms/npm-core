@@ -1,13 +1,13 @@
-import { createAppAsyncThunk } from '../withTypes';
 import http from '../../http-common';
 import { GeneralData } from './settingSlice';
 import { objectToQueryString } from '../../helpers';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export type GetSettingParams = {
     locale?: string
 }
 
-export const getGeneralData = createAppAsyncThunk('general', async (params: GetSettingParams | undefined, { rejectWithValue }) => {
+export const getGeneralData = createAsyncThunk('general', async (params: GetSettingParams | undefined, { rejectWithValue }) => {
     try {
         const response = await http.get<GeneralData>('/general' + (params ? '?' + objectToQueryString(params) : ''));
 

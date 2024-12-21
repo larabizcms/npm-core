@@ -1,6 +1,5 @@
 import http from '../../../http-common';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { createAppAsyncThunk } from '../../withTypes';
 import { Cart } from './cartSlice';
 
 export type CartAddParams = {
@@ -14,7 +13,7 @@ export type GetCartParams = {
     locale?: string,
 }
 
-export const getCart = createAppAsyncThunk('carts/get', async (params: GetCartParams, { rejectWithValue }) => {
+export const getCart = createAsyncThunk('carts/get', async (params: GetCartParams, { rejectWithValue }) => {
     try {
         const response = await http.get<Cart>(`/ecommerce/carts/${params.id}`+ (params.locale ? `?locale=${params.locale}` : ''));
 

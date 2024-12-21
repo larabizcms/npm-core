@@ -30,7 +30,7 @@ export type PaymentCompleteParams = {
     [key: string]: any
 }
 
-export const complete = createAppAsyncThunk(
+export const complete = createAsyncThunk(
     'payment/complete',
     async ({ module, transaction_id, ...params }: PaymentCompleteParams, { rejectWithValue }) => {
         try {
@@ -47,7 +47,7 @@ export const complete = createAppAsyncThunk(
     }
 );
 
-export const cancel = createAppAsyncThunk(
+export const cancel = createAsyncThunk(
     'payment/cancel',
     async ({ module, transaction_id, ...params }: PaymentCompleteParams, { rejectWithValue }) => {
         try {

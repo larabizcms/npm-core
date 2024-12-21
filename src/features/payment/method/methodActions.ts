@@ -1,7 +1,7 @@
-import http from '@local/http-common';
+import http from '../../../http-common';
 import { createAppAsyncThunk } from '../../withTypes';
 import { PaymentMethod } from './methodSlice';
-import { objectToQueryString } from '../../helpers';
+import { objectToQueryString } from '../../../helpers';
 
 export type GetPaymentMethodsParams = {
     module: string,

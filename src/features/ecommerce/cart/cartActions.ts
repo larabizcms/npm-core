@@ -1,4 +1,4 @@
-import http from '@local/http-common';
+import http from '../../http-common';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createAppAsyncThunk } from '../../withTypes';
 import { Cart } from './cartSlice';

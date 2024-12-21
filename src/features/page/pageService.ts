@@ -1,6 +1,5 @@
-import customBaseQuery, { onQueryStartedError } from '@larabizcms/larabizcms/features/BaseQuery';
-import { objectToQueryString } from '@larabizcms/admin/helpers/helper';
-import i18n from '@local/i18n';
+import customBaseQuery, { onQueryStartedError } from '../../features/BaseQuery';
+import { objectToQueryString } from '../../helpers';
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 export const pageApi = createApi({
@@ -8,8 +7,8 @@ export const pageApi = createApi({
     baseQuery: customBaseQuery(),
     endpoints: (builder) => ({
         getPage: builder.query({
-            query: ({page, query}) => ({
-                url: `/admin/pages/${page}?locale=${i18n.language}&`+ objectToQueryString(query as any),
+            query: ({ page, query }: any) => ({
+                url: `/admin/pages/${page}?` + objectToQueryString(query as any),
                 method: 'GET',
             }),
             onQueryStarted: onQueryStartedError,

@@ -1,7 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import http from '@local/http-common';
-import { setToken } from './authSlice';
-import { store } from '@local/store';
+import http from '../../http-common';
 
 export type LoginData = {
     email: string;
@@ -107,16 +105,16 @@ export const refreshToken = createAsyncThunk(
         try {
             const res = await http.post(`/auth/user/refresh-token`, data);
 
-            if (res.data && res.data.success === true) {
-                store.dispatch(setToken(res.data.data.token));
-                return res.data;
-            } else {
-                store.dispatch(setToken(null));
-            }
+            // if (res.data && res.data.success === true) {
+            //     store.dispatch(setToken(res.data.data.token));
+            //     return res.data;
+            // } else {
+            //     store.dispatch(setToken(null));
+            // }
 
             return res.data;
         } catch (error: any) {
-            store.dispatch(setToken(null));
+            // store.dispatch(setToken(null));
 
             if (error.response && error.response.data) {
                 return rejectWithValue(error.response.data)

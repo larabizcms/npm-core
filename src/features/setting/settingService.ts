@@ -1,7 +1,6 @@
-import customBaseQuery, { onQueryStartedError } from './BaseQuery';
+import customBaseQuery, { onQueryStartedError } from '../BaseQuery';
 import { objectToQueryString } from '../../helpers';
-import i18n from '@local/i18n';
-import { CallAPIData, SettingData } from '@larabizcms/larabizcms/types/SettingData';
+import { CallAPIData, SettingData } from '../../types/SettingData';
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 export const settingApi = createApi({
@@ -9,22 +8,22 @@ export const settingApi = createApi({
     baseQuery: customBaseQuery(),
     endpoints: (builder) => ({
         getGeneral: builder.query({
-            query: () => ({
-                url: '/admin/general?locale='+i18n.language,
+            query: (props: any) => ({
+                url: '/admin/general?' + objectToQueryString(props),
                 method: 'GET',
             }),
             onQueryStarted: onQueryStartedError,
         }),
         getSettings: builder.query({
             query: (props: SettingData) => ({
-                url: '/admin/settings?locale='+i18n.language+'&'+ objectToQueryString(props),
+                url: '/admin/settings?' + objectToQueryString(props),
                 method: 'GET',
             }),
             onQueryStarted: onQueryStartedError,
         }),
         getSettingForms: builder.query({
             query: (props: SettingData) => ({
-                url: '/admin/settings/forms?locale='+i18n.language+'&'+ objectToQueryString(props),
+                url: '/admin/settings/forms?' + objectToQueryString(props),
                 method: 'GET',
             }),
             onQueryStarted: onQueryStartedError,

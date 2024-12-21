@@ -1,4 +1,4 @@
-import http from '@local/http-common';
+import http from '../../http-common';
 import { createAppAsyncThunk } from '../../withTypes';
 import { Order } from './orderSlice';
 import { objectToQueryString } from '../../helpers';

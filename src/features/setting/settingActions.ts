@@ -1,5 +1,5 @@
 import { createAppAsyncThunk } from '../withTypes';
-import http from '@local/http-common';
+import http from '../../http-common';
 import { GeneralData } from './settingSlice';
 import { objectToQueryString } from '../../helpers';
 

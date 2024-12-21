@@ -1,5 +1,5 @@
-import http from '@local/http-common';
-import { createAppAsyncThunk } from './withTypes';
+import http from '../../../http-common';
+import { createAppAsyncThunk } from '../../../features/withTypes';
 
 export type PaymentPurchaseParams = {
     module: string,

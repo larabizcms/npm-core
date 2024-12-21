@@ -1,5 +1,5 @@
-import customBaseQuery, { onQueryStartedError } from '@larabizcms/larabizcms/features/BaseQuery';
-import { objectToQueryString } from '@larabizcms/admin/helpers/helper';
+import customBaseQuery, { onQueryStartedError } from './BaseQuery';
+import { objectToQueryString } from '../../helpers';
 import i18n from '@larabizcms/admin/i18n';
 import { CallAPIData, SettingData } from '@larabizcms/larabizcms/types/SettingData';
 import { createApi } from '@reduxjs/toolkit/query/react';

@@ -1,4 +1,4 @@
-import customBaseQuery, { onQueryStartedError } from '@larabizcms/larabizcms/features/BaseQuery';
+import customBaseQuery, { onQueryStartedError } from './BaseQuery';
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { LoginData } from './authActions';
 

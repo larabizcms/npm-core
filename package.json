@@ -19,8 +19,10 @@
     },
     "dependencies": {
         "@reduxjs/toolkit": "^2.2.7",
+        "axios": "^1.1.2",
         "cross-env": "^7.0.3",
-        "react": "^17.0.0 || ^18.0.0"
+        "react": "^17.0.0 || ^18.0.0",
+        "react-redux": "^9.2.0"
     },
     "license": "MIT",
     "repository": {
@@ -40,6 +42,8 @@
     },
     "homepage": "https://github.com/larabizcms/npm-core#readme",
     "devDependencies": {
+        "@types/node": "^22.10.2",
+        "@types/react": "^19.0.2",
         "typescript": "^5.6.2"
     }
 }

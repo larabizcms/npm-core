@@ -1,4 +1,4 @@
-import http from "@larabizcms/larabizcms/http-common";
+import http from "@local/http-common";
 import { BaseQueryFn } from "@reduxjs/toolkit/query";
 import { AxiosError, AxiosRequestConfig } from "axios";
 import { store } from "@local/store";

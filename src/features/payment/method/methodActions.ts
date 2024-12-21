@@ -1,4 +1,4 @@
-import http from '@larabizcms/larabizcms/http-common';
+import http from '@local/http-common';
 import { createAppAsyncThunk } from '../../withTypes';
 import { PaymentMethod } from './methodSlice';
 import { objectToQueryString } from '@larabizcms/admin/helpers/helper';

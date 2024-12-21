@@ -1,4 +1,4 @@
-import http from '@larabizcms/larabizcms/http-common';
+import http from '@local/http-common';
 import { createAppAsyncThunk } from '../withTypes';
 import { Language } from './languageSlice';
 import { objectToQueryString } from '@larabizcms/admin/helpers/helper';

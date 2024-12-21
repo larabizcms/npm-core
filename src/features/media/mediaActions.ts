@@ -1,4 +1,4 @@
-import http from '@larabizcms/larabizcms/http-common';
+import http from '@local/http-common';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export type FolderData = {

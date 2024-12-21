@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import http from '@larabizcms/larabizcms/http-common';
+import http from '@local/http-common';
 import { setToken } from './authSlice';
 import { store } from '@local/store';
 

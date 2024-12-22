@@ -2,9 +2,8 @@ import axios from "axios";
 import React from "react";
 import { isInternalUrl } from "./helpers";
 import { EnhancedStore } from "@reduxjs/toolkit";
-import { isRefreshTokenLoading, selectAuthToken } from "./features/selectors";
+import { selectAuthToken } from "./features/selectors";
 import { logout, setToken } from "./features/auth/authSlice";
-import { refreshToken } from "./features/auth/authActions";
 
 export type ApiConfig = {
     apiBaseUrl: string,

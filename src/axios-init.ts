@@ -27,19 +27,21 @@ axios.interceptors.request.use(
         // console.log(error);
 
         // If error 401 then remove token and redirect to login
-        // if (error.response && error.response.status === 401) {
-        //     const state = store.getState();
-        //     const token = selectAuthToken(state);
-        //     const loading = isRefreshTokenLoading(state);
+        if (error.response && error.response.status === 401) {
+            // const state = store.getState();
+            // const token = selectAuthToken(state);
+            // const loading = isRefreshTokenLoading(state);
 
-        //     if (!loading && token && token.refresh_token) {
-        //         store.dispatch(refreshToken({
-        //             refresh_token: token.refresh_token,
-        //         })).then(() => {
-        //             window.location.reload();
-        //         });
-        //     }
-        // }
+            // if (!loading && token && token.refresh_token) {
+            //     store.dispatch(refreshToken({
+            //         refresh_token: token.refresh_token,
+            //     })).then(() => {
+            //         window.location.reload();
+            //     });
+            // }
+
+            window.location.href = '/user/login';
+        }
 
         return Promise.reject(error);
     }

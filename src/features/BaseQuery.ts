@@ -23,7 +23,7 @@ export const onQueryStartedError = async (args: any, { queryFulfilled }: { query
             //     }));
             // }
 
-            window.location.href = '/user/login';
+            // window.location.href = '/user/login';
         }
 
         throw e;

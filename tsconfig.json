@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "jsx": "react",
         "target": "ES6",
         "declaration": true,
         "outDir": "./dist",
@@ -9,7 +10,7 @@
     },
     "include": [
         "src"
-, "../premium/react/axios-init.ts"    ],
+    ],
     "exclude": [
         "node_modules",
         "test"

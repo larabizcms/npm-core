@@ -1,8 +1,6 @@
 import { User } from "./features/auth/authSlice";
 import { Media } from "./features/media/mediaSlice";
 
-export const apiBaseUrl = (location.origin + '/api/v1');
-
 /**
  * Returns the given URL as it is. This is a no-op function that's used as a placeholder.
  *
@@ -34,8 +32,8 @@ export function queryStringToObject(queryString: string) {
     return query;
 }
 
-export function isInternalUrl(url: string) {
-    return url.startsWith(apiBaseUrl)
+export function isInternalUrl(url: string, baseUrl?: string) {
+    return url.startsWith(baseUrl ?? location.origin)
         || url.startsWith("/")
         || !url.startsWith("http://")
         || !url.startsWith("https://");

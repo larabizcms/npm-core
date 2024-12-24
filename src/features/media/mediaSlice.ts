@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createFolder } from './mediaActions';
 
 export type Media = {
-    id: number;
+    id: string;
     name: string;
     path: string;
     type: string;
@@ -25,7 +25,7 @@ export type Media = {
 }
 
 export type Folder = {
-    id: number,
+    id: string,
     name: string,
     parent_id: number | null,
     created_at: string,

@@ -1,3 +1,4 @@
+import http from "./http-common";
 import { User } from "./features/auth/authSlice";
 import { Media } from "./features/media/mediaSlice";
 
@@ -115,4 +116,21 @@ export function objectToQueryString(obj: { [key: string]: string | number | null
     });
 
     return keyValuePairs.join('&');
+}
+
+export async function downloadFile(url: string, filename: string) {
+    const response = await http.get(url, {
+        responseType: 'blob', // Ensures the response is handled as a file
+    });
+
+    // Create a URL for the file
+    const blob = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = blob;
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up
+    link.parentNode?.removeChild(link);
 }

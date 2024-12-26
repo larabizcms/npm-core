@@ -101,9 +101,9 @@ export const verifyEmail = createAsyncThunk(
 
 export const refreshToken = createAsyncThunk(
     'user/refresh-token',
-    async (data: { refresh_token: string }, { rejectWithValue }) => {
+    async (data: { refresh_token: string, base_url: string }, { rejectWithValue }) => {
         try {
-            const res = await http.post(`/auth/user/refresh-token`, data);
+            // const res = await http.post(`/auth/user/refresh-token`, data);
 
             // if (res.data && res.data.success === true) {
             //     store.dispatch(setToken(res.data.data.token));
@@ -111,6 +111,25 @@ export const refreshToken = createAsyncThunk(
             // } else {
             //     store.dispatch(setToken(null));
             // }
+
+            // Refresh the token
+
+            const response = await fetch(
+                `${data.base_url}/auth/user/refresh-token`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ refresh_token: data.refresh_token })
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Failed to refresh token');
+            }
+
+            const res = await response.json();
 
             return res.data;
         } catch (error: any) {

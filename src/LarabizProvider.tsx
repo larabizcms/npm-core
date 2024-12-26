@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { createContext, useContext } from "react";
 import { isInternalUrl } from "./helpers";
 import { EnhancedStore } from "@reduxjs/toolkit";
 import { selectAuthToken } from "./features/selectors";
@@ -10,34 +10,32 @@ export type ApiConfig = {
 }
 
 const configureApi = (apiConfig: ApiConfig, store: EnhancedStore) => {
+    // Set default base URL
     axios.defaults.baseURL = apiConfig.apiBaseUrl;
 
+    // Add request interceptor
     axios.interceptors.request.use(
-        config => {
-            // Check is internal request
+        (config) => {
+            // Check if the request is internal
             if (config.url && isInternalUrl(config.url, apiConfig.apiBaseUrl)) {
-                const token = localStorage.getItem('lb_auth_token')
-                    ? JSON.parse(localStorage.getItem('lb_auth_token') as string)
-                    : null;
+                const state = store.getState();
+                const token = selectAuthToken(state);
 
                 config.headers = config.headers || {};
 
-                if (token) {
-                    // If the token exists, set the Authorization header
+                if (token?.access_token) {
+                    // Set Authorization header if token exists
                     config.headers['Authorization'] = `Bearer ${token.access_token}`;
                 }
             }
-
             return config;
         },
-        error => {
-            // Handle the error
-            return Promise.reject(error);
-        }
+        (error) => Promise.reject(error) // Forward the error
     );
 
+    // Add response interceptor
     axios.interceptors.response.use(
-        (response) => response,
+        (response) => response, // Pass through valid responses
         async (error) => {
             const originalRequest = error.config;
 
@@ -45,38 +43,61 @@ const configureApi = (apiConfig: ApiConfig, store: EnhancedStore) => {
                 originalRequest._retry = true;
 
                 try {
+                    // Get the current state
                     const state = store.getState();
                     const token = selectAuthToken(state);
 
-                    if (token && token.refresh_token) {
-                        const response = await axios.post(
-                            '/auth/user/refresh-token',
+                    if (token?.refresh_token) {
+                        // Refresh the token
+                        const response = await fetch(
+                            `${apiConfig.apiBaseUrl}/auth/user/refresh-token`,
                             {
-                                refresh_token: token.refresh_token,
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ refresh_token: token.refresh_token })
                             }
                         );
 
-                        const { access_token } = response.data.data.token;
+                        if (!response.ok) {
+                            throw new Error('Failed to refresh token');
+                        }
 
-                        store.dispatch(setToken(response.data.data.token));
-                        originalRequest.headers.Authorization = `Bearer ${access_token}`;
+                        const res = await response.json();
+
+                        const newToken = res.data.token;
+                        const { access_token } = newToken;
+
+                        // Update the token in the store
+                        store.dispatch(setToken(newToken));
+
+                        // Retry the original request with the new token
+                        originalRequest.headers['Authorization'] = `Bearer ${access_token}`;
 
                         return axios(originalRequest);
+                        //return window.location.reload();
+                    } else {
+                        // Logout if no refresh token is available
+                        store.dispatch(setToken(null));
+                        store.dispatch(logout());
+                        return Promise.reject(new Error('Refresh token is missing'));
                     }
-
-                    store.dispatch(setToken(null));
-                    return axios(originalRequest);
                 } catch (refreshError) {
+                    // Handle errors during token refresh
+                    store.dispatch(setToken(null));
                     store.dispatch(logout());
 
                     return Promise.reject(refreshError);
                 }
             }
 
+            // For other errors, reject the promise
             return Promise.reject(error);
         }
     );
 };
+
 
 export type LarabizProviderProps = {
     apiConfig: ApiConfig,
@@ -84,8 +105,30 @@ export type LarabizProviderProps = {
     children: React.ReactNode,
 }
 
+const LarabizContext = createContext<{
+    apiConfig: ApiConfig | null,
+    store: EnhancedStore | null,
+}>({
+    apiConfig: null,
+    store: null,
+});
+
+export function useLarabiz() {
+    const context = useContext(LarabizContext);
+    if (!context) {
+        throw new Error("useGlobalLoading must be used within GlobalLoadingProvider");
+    }
+    return context;
+}
+
 export default function LarabizProvider({ apiConfig, store, children }: LarabizProviderProps) {
     configureApi(apiConfig, store);
+
+    const value = { apiConfig, store };
+
+    return (
+        <LarabizContext.Provider value={value}>{children}</LarabizContext.Provider>
+    );
 
     return (
         <>

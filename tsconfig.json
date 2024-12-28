@@ -1,15 +1,17 @@
 {
     "compilerOptions": {
+        "baseUrl": "./",
         "jsx": "react",
         "target": "ES6",
         "declaration": true,
         "outDir": "./dist",
         "strict": true,
         "moduleResolution": "nodenext",
-        "module": "NodeNext"
+        "module": "NodeNext",
+        "allowSyntheticDefaultImports": true
     },
     "include": [
-        "src"
+        "src/**/*"
     ],
     "exclude": [
         "node_modules",

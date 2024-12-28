@@ -121,7 +121,9 @@ export function useLarabiz() {
     return context;
 }
 
-export default function LarabizProvider({ apiConfig, store, children }: LarabizProviderProps) {
+export default function LarabizProvider(
+    { apiConfig, store, children }: LarabizProviderProps): JSX.Element
+{
     configureApi(apiConfig, store);
 
     const value = { apiConfig, store };

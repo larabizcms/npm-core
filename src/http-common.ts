@@ -1,3 +1,5 @@
 import axios from "axios";
 
-export default axios;
+const http = axios.create();
+
+export default http;
